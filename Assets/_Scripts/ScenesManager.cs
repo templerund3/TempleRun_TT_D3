@@ -27,7 +27,7 @@ public class ScenesManager : MonoBehaviour {
     private void Start()
     {
         GoToScene(TypeScene.Home);
-    }
+    } 
 
     public Scenes[] secenes;
     public int currentScenes;
