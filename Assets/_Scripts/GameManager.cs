@@ -13,4 +13,9 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void BtnStartOnclick()
+    {
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay);
+    }
 }
