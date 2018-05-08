@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void btnShop()
     {
+        MusicController.Instance.PlayUIClick();
         if (panelShop != null)
         {
             panelShop.SetActive(true);
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void btnShare()
     {
+        MusicController.Instance.PlayUIClick();
         AndroidNativeFunctions.ShareText("Hello World", "Subject", "Share Text");
     }
 
@@ -38,7 +40,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void btnLeaderBoard()
     {
-
+        MusicController.Instance.PlayUIClick();
     }
 
     /// <summary>
@@ -51,6 +53,7 @@ public class UIManager : MonoBehaviour
 
     public void btnClosePanel(GameObject g)
     {
+        MusicController.Instance.PlayUIClick();
         g.SetActive(false);
     }
 }

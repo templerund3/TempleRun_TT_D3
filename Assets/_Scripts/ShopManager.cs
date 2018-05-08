@@ -51,6 +51,8 @@ public class ShopManager : MonoSingleton<ShopManager>
 
     public void btnNext()
     {
+        MusicController.Instance.PlayUIClick();
+
         scrollCharacter.horizontalNormalizedPosition += 0.33f;
         mCharacter = lstcharacter[mCharacter.idCharacter+1];
         buttonPre.gameObject.SetActive(true);
@@ -63,6 +65,8 @@ public class ShopManager : MonoSingleton<ShopManager>
 
     public void btnPre()
     {
+        MusicController.Instance.PlayUIClick();
+
         scrollCharacter.horizontalNormalizedPosition -= 0.33f;
         mCharacter = lstcharacter[mCharacter.idCharacter-1];
         buttonNext.gameObject.SetActive(true);
@@ -95,6 +99,8 @@ public class ShopManager : MonoSingleton<ShopManager>
 
     public void btnBuyCharacter()
     {
+        MusicController.Instance.PlayUIClick();
+
         if(!mCharacter.isBuy)
         {
             if(PlayerPrefs.GetInt("Coin") >= mCharacter.costCharacter)
