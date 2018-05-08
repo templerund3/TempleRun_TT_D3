@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     public int coin = 0;
 
+    public int level = 1;
+
     public GameObject panelPause;
 
 	// Use this for initialization

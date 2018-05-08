@@ -1,10 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("UI Menu")]
+    //public Text txtCoinPlayer;
     public GameObject panelShop;
+
+    [Header("UI GamePlay")]
+    public Text txtCoinValue;
+    public Text txtLevelValue;
+
+    
+
+    private void Update()
+    {
+        //txtCoinPlayer.text = PlayerPrefs.GetInt("Coin").ToString();
+        txtCoinValue.text = GameManager.Instance.coin.ToString();
+        txtLevelValue.text = "Level " + GameManager.Instance.level.ToString();
+    }
 
     /// <summary>
     /// Hàm khi nhấn button Play
