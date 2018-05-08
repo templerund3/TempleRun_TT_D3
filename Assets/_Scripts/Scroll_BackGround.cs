@@ -10,9 +10,11 @@ public class Scroll_BackGround : MonoBehaviour {
 
     void Update()
     {
-
-        Offset += Time.deltaTime * ScrollSpeed;
-        gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(Offset, 0.01f);
+        if (GameState.Instance.gamestate == STATE.PLAYING)
+        {
+            Offset += Time.deltaTime * ScrollSpeed;
+            gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(Offset, 0.01f);
+        }
 
     }
 }

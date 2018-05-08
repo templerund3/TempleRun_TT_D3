@@ -23,12 +23,14 @@ public class GameState : MonoBehaviour
             return;
         }
         Instance = this;
+
     }
 
     // Use this for initialization
     void Start()
     {
         gamestate = STATE.NONE;
+        gamestate = STATE.PLAYING;
     }
 
 
