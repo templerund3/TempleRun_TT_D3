@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Scroll_Mapping : MonoBehaviour
 {
-	
-	public float ScrollSpeed = 0.5f;
-	float Offset;
-	
-	void Update ()
+    [SerializeField]
+    private float ScrollSpeed = 0.5f;
+
+    private float Offset;
+
+    void Update ()
 	{
 	
 		Offset += Time.deltaTime * ScrollSpeed;
