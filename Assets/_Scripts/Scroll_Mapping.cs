@@ -6,14 +6,12 @@ public class Scroll_Mapping : MonoBehaviour
     [SerializeField]
     private float ScrollSpeed = 0.5f;
 
-    private float Offset;
-
     void Update ()
 	{
-	
-		Offset += Time.deltaTime * ScrollSpeed;
-		gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2 (Offset, 0.01f);
-		
+        if (GameState.Instance.gamestate == STATE.PLAYING)
+        {
+            transform.Translate(Vector2.left * ScrollSpeed);
+        }
 	}
 }
 

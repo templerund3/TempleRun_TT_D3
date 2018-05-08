@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager Instance;
+
+    void Awake()
+    {
+        if (Instance != null)
+            return;
+        Instance = this;
+    }
+
+    public int coin = 0;
+
     public GameObject panelPause;
 
 	// Use this for initialization
@@ -41,4 +52,5 @@ public class GameManager : MonoBehaviour {
         panelPause.SetActive(false);
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
     }
+
 }
