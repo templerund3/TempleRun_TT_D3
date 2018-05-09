@@ -9,16 +9,9 @@ public class LoadMapJson : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        LoadMapFromJson(1);
+        //LoadMapFromJson(1);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public Map mapCurrent;
     //public void ReadMapFromJson(int _level)
     //{
     //    string dbPath = "";
@@ -71,14 +64,6 @@ public class LoadMapJson : MonoBehaviour
     //    //StartCoroutine(ClosePaneLoad_TimeOut());
     //}
 
-    /// <summary>
-    /// Close panle loading...
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerator ClosePaneLoad_TimeOut()
-    {
-        yield return new WaitForSeconds(7.0f);
-    }
     Map map = new Map();
     public void LoadMapFromJson(int _level)
     {
@@ -91,8 +76,9 @@ public class LoadMapJson : MonoBehaviour
             map.star2 = objJson["star2"].AsInt;
             var items = objJson["items"];
             map.itemsInMapCurrent = new Map.itemInMap[items.Count];
+            
+            //map.itemsInMapCurrent = JsonHelper.FromJson<Map.itemInMap>(items);
             Debug.Log(map.itemsInMapCurrent.Length);
-            //map.itemsInMapCurrent[0] = JsonHelper.FromJson<Map.itemInMap>(items.ToString())[0];
             for (int i = 0; i < map.itemsInMapCurrent.Length; i++)
             {
                 map.itemsInMapCurrent[i].name = items[i]["name"];
@@ -103,10 +89,26 @@ public class LoadMapJson : MonoBehaviour
                 map.itemsInMapCurrent[i].rotZ = items[i]["rotZ"].AsFloat;
                 map.itemsInMapCurrent[i].scaleX = items[i]["scaleX"].AsFloat;
                 map.itemsInMapCurrent[i].scaleY = items[i]["scaleY"].AsFloat;
-                //Debug.Log(map.itemsInMapCurrent[i].name);
+
+                for (int j = 0; j < _item.Count; j++)
+                {
+                    if (_item[j].name.Contains(map.itemsInMapCurrent[i].name))
+                    {
+                        GameObject a = Instantiate(_item[j], objMap.transform, true);
+                        a.transform.position = new Vector2(map.itemsInMapCurrent[i].posX, map.itemsInMapCurrent[i].posY);
+                        a.transform.rotation = Quaternion.Euler(new Vector3(map.itemsInMapCurrent[i].rotX, map.itemsInMapCurrent[i].rotY, map.itemsInMapCurrent[i].rotZ));
+                        //a.transform.localScale = new Vector2(map.itemsInMapCurrent[i].scaleX, map.itemsInMapCurrent[i].scaleY);
+                    }
+                }
+
+                Debug.Log(map.itemsInMapCurrent[i].name);
             }
         }
     }
+
+    public GameObject objMap;
+
+    public List<GameObject> _item;
 
     string loadMapJson(int _level)
     {
