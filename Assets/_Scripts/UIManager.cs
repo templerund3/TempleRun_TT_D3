@@ -72,4 +72,19 @@ public class UIManager : MonoBehaviour
         MusicController.Instance.PlayUIClick();
         g.SetActive(false);
     }
+
+    public void btnPlayAgain()
+    {
+
+    }
+
+    public void btnPlayNext()
+    {
+
+    }
+
+    public void btnBackToMenu()
+    {
+
+    }
 }
