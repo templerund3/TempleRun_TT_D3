@@ -51,6 +51,12 @@ public class UIManager : MonoBehaviour
         AndroidNativeFunctions.ShareText("Hi ! I'am DatDz. Ahihi !!!", "Subject", "RoboFlight");
     }
 
+    public void btnShareScreenShot()
+    {
+        MusicController.Instance.PlayUIClick();
+        ShareImage.Instance.ButtonShare();
+    }
+
     /// <summary>
     /// Hàm khi nhấn button LeaderBoard
     /// </summary>

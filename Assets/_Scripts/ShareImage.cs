@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ShareImage : MonoBehaviour 
+public class ShareImage : MonoSingleton<ShareImage> 
 {
     private bool isProcessing = false;
     //public Button buttonShare;
