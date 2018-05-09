@@ -27,8 +27,10 @@ public class SnapScrolling : MonoBehaviour {
     private RectTransform contentRect;
     private Vector2 contentVector;
 
-    private int selectedPanID;
+    public int selectedPanID;
     private bool isScrolling;
+
+    public Image[] arrayIndexPage;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class SnapScrolling : MonoBehaviour {
         for (int i = 0; i < panCount; i++)
         {
             instPans[i] = Instantiate(panPrefab, transform, false);
+            instPans[i].GetComponent<ItemScroll>().ID = i;
+            instPans[i].GetComponent<ItemScroll>().Init();
             if (i == 0) continue;
             instPans[i].transform.localPosition = new Vector2(instPans[i - 1].transform.localPosition.x + panPrefab.GetComponent<RectTransform>().sizeDelta.x + panOffset+500f,
                 instPans[i].transform.localPosition.y);
@@ -58,6 +62,14 @@ public class SnapScrolling : MonoBehaviour {
             {
                 nearestPos = distance;
                 selectedPanID = i;
+                arrayIndexPage[i].color = Color.red;
+                for (int k = 0; k < arrayIndexPage.Length; k++)
+                {
+                    if (k != i)
+                    {
+                        arrayIndexPage[k].color = Color.yellow;
+                    }
+                }
             }
             float scale = Mathf.Clamp(1 / (distance / panOffset) * scaleOffset, 0.5f, 1.7f);
             pansScale[i].x = Mathf.SmoothStep(instPans[i].transform.localScale.x, scale + 0.3f, scaleSpeed * Time.fixedDeltaTime);
@@ -69,6 +81,7 @@ public class SnapScrolling : MonoBehaviour {
         if (isScrolling || scrollVelocity > 400) return;
         contentVector.x = Mathf.SmoothStep(contentRect.anchoredPosition.x, pansPos[selectedPanID].x, snapSpeed * Time.fixedDeltaTime);
         contentRect.anchoredPosition = contentVector;
+
     }
 
     public void Scrolling(bool scroll)

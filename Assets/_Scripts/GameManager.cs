@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,6 +19,10 @@ public class GameManager : MonoBehaviour {
     public int level = 1;
 
     public GameObject panelPause;
+    public GameObject panelReady;
+    public GameObject player;
+
+    public BtnnLevel[] arrayLevels;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +36,15 @@ public class GameManager : MonoBehaviour {
 
     public void BtnStartOnclick()
     {
-        GameState.Instance.gamestate = STATE.PLAYING;
+        
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
+        
+    }
+
+    public void StartGame()
+    {
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay);
+        StartCoroutine(ActionTimer(3f, () => panelReady.SetActive(true), () => PlayingGame()));
     }
 
     public void BtnPauseOnClick()
@@ -55,4 +67,21 @@ public class GameManager : MonoBehaviour {
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
     }
 
+    public IEnumerator ActionTimer(float time, UnityAction actionBegin = null, UnityAction actionEnd = null)
+    {
+        if (actionBegin != null)
+            actionBegin();
+        yield return new WaitForSeconds(time);
+        if (actionEnd != null)
+            actionEnd();
+    }
+
+    public void PlayingGame()
+    {
+        GameState.Instance.gamestate = STATE.PLAYING;
+        player.transform.position = new Vector3(-3.8f, 2f, 0f);
+        panelReady.SetActive(false);
+        player.SetActive(true);
+        
+    }
 }

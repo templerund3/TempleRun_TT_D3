@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Item")]
     public GameObject shieldPlayer;
+    public GameObject Objshield;
     private bool isShield;
     private bool isMagnet;
 
@@ -36,10 +37,24 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        isGround = false;
+        doubleJump = false;
+        isShield = false;
+        isMagnet = false;
+        if (anim)
+        {
+            anim.SetBool("EDie", false);
+            anim.SetBool("isDie", false);
+            anim.SetBool("isGround", false);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //if (GameState.Instance.gamestate == STATE.PLAYING)
+        if (GameState.Instance.gamestate == STATE.PLAYING)
         {
             isGround = Physics2D.OverlapCircle(posCheckGround.position, 0.05f, 1 << 8);
             if (isGround)
@@ -84,12 +99,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Shield"))
         {
-            GameObject shield = Instantiate<GameObject>(shieldPlayer, transform);
+            Objshield = Instantiate<GameObject>(shieldPlayer, transform);
             isShield = true;
             StartCoroutine(ActionTimer(5f, null , () =>
             {
                 isShield = false;
-                Destroy(shield);
+                if (Objshield != null)
+                {
+                    Destroy(Objshield);
+                }
             }));
         }
         if (collision.CompareTag("Magnet"))
@@ -99,15 +117,37 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("ElectricOBstacle"))
         {
-            anim.SetBool("EDie", true);
-            StartCoroutine(ActionTimer( 0.5f, null, ()=>GameOver()));
-            GameState.Instance.gamestate = STATE.GAMEOVER;
+            if (!isShield)
+            {
+                anim.SetBool("EDie", true);
+                StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
+                GameState.Instance.gamestate = STATE.GAMEOVER;
+            }
+            else
+            {
+                isShield = false;
+                if (Objshield != null)
+                {
+                    Destroy(Objshield);
+                }
+            }
         }
         if (collision.CompareTag("Obstacle"))
         {
-            anim.SetBool("isDie", true);
-            StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
-            GameState.Instance.gamestate = STATE.GAMEOVER;
+            if (!isShield)
+            {
+                anim.SetBool("isDie", true);
+                StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
+                GameState.Instance.gamestate = STATE.GAMEOVER;
+            }
+            else
+            {
+                isShield = false;
+                if (Objshield != null)
+                {
+                    Destroy(Objshield);
+                }
+            }
         }
         if (collision.CompareTag("Spring"))
         {
@@ -116,7 +156,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Finish"))
         {
-
+            GameState.Instance.gamestate = STATE.GAMEWIN;
+            GameWin();
         }
     }
 
