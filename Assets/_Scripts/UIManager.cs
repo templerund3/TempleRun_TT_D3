@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     public void btnShare()
     {
         MusicController.Instance.PlayUIClick();
-        AndroidNativeFunctions.ShareText("Hello World", "Subject", "Share Text");
+        AndroidNativeFunctions.ShareText("Hi ! I'am DatDz. Ahihi !!!", "Subject", "RoboFlight");
     }
 
     /// <summary>
