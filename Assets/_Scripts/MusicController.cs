@@ -25,8 +25,17 @@ public class MusicController : MonoSingleton<MusicController>
     public AudioSource soundSource;
 
     private void Start()
-    {    
-        isOn = true;
+    {
+        if (PlayerPrefs.GetInt(ContsInGame.MUSIC) == 0 || !PlayerPrefs.HasKey(ContsInGame.MUSIC))
+        {
+            isOn = true;
+        }
+        else
+        {
+            isOn = false;
+        }
+        
+        UpdateButtons();
     }
 
     #region ===MUSIC===
@@ -36,6 +45,14 @@ public class MusicController : MonoSingleton<MusicController>
     private void UpdateButtons()
     {
         buttonMusic.gameObject.GetComponent<Image>().sprite = isOn ? isOnSprite : isOffSprite;
+        if(isOn)
+        {
+            PlayerPrefs.SetInt(ContsInGame.MUSIC, 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(ContsInGame.MUSIC, 1);
+        }
     }
 
     /// <summary>

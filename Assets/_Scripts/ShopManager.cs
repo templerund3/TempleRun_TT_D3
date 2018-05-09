@@ -23,9 +23,9 @@ public class ShopManager : MonoSingleton<ShopManager>
 
     private void Start()
     {
-        PlayerPrefs.SetInt("idCharacterCurrent", 0);
-        PlayerPrefs.SetInt("Coin", 900);
-        mCharacter = lstcharacter[PlayerPrefs.GetInt("idCharacterCurrent")];
+        //PlayerPrefs.SetInt("idCharacterCurrent", 0);
+        //PlayerPrefs.SetInt("Coin", 900);
+        mCharacter = lstcharacter[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
         if (mCharacter.idCharacter <= 0)
         {
             buttonPre.gameObject.SetActive(false);
@@ -38,7 +38,7 @@ public class ShopManager : MonoSingleton<ShopManager>
 
         for (int i = 0; i < lstcharacter.Count; i++)
         {
-            if(PlayerPrefs.GetInt("Character" + i) ==0) //chưa mua
+            if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT + i) == 0) //chưa mua
             {
                 lstcharacter[i].isBuy = false;
             }
@@ -80,20 +80,20 @@ public class ShopManager : MonoSingleton<ShopManager>
     private void UpdateCharacter()
     {
         nameCharacter.text = mCharacter.nameCharacter;
-        if(PlayerPrefs.GetInt("idCharacterCurrent") == mCharacter.idCharacter && mCharacter.isBuy)
+        if(PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) == mCharacter.idCharacter && mCharacter.isBuy)
         {
-            costCharacter.text = "Selected";
+            costCharacter.text = ContsInGame.SELECTED_TEXT;
         }
-        else if (PlayerPrefs.GetInt("idCharacterCurrent") != mCharacter.idCharacter && mCharacter.isBuy)
+        else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) != mCharacter.idCharacter && mCharacter.isBuy)
         {
-            costCharacter.text = "Select";
+            costCharacter.text = ContsInGame.SELECT_TEXT;
         }
         else
         {
             costCharacter.text = mCharacter.costCharacter.ToString();
         }
 
-        txtCoinValue.text = PlayerPrefs.GetInt("Coin").ToString();
+        txtCoinValue.text = PlayerPrefs.GetInt(ContsInGame.COIN).ToString();
         
     }
 
@@ -103,11 +103,11 @@ public class ShopManager : MonoSingleton<ShopManager>
 
         if(!mCharacter.isBuy)
         {
-            if(PlayerPrefs.GetInt("Coin") >= mCharacter.costCharacter)
+            if (PlayerPrefs.GetInt(ContsInGame.COIN) >= mCharacter.costCharacter)
             {
-                PlayerPrefs.SetInt("Coin", PlayerPrefs.GetInt("Coin") - mCharacter.costCharacter);
-                PlayerPrefs.SetInt("idCharacterCurrent", mCharacter.idCharacter);
-                PlayerPrefs.SetInt("Character" + mCharacter.idCharacter, 1);
+                PlayerPrefs.SetInt(ContsInGame.COIN, PlayerPrefs.GetInt(ContsInGame.COIN) - mCharacter.costCharacter);
+                PlayerPrefs.SetInt(ContsInGame.ID_CHARACTER_CURRENT, mCharacter.idCharacter);
+                PlayerPrefs.SetInt(ContsInGame.CHARACTER + mCharacter.idCharacter, 1);
                 lstcharacter[mCharacter.idCharacter].isBuy = true;
             }
             else
@@ -117,7 +117,7 @@ public class ShopManager : MonoSingleton<ShopManager>
         }
         else
         {
-            PlayerPrefs.SetInt("idCharacterCurrent", mCharacter.idCharacter);
+            PlayerPrefs.SetInt(ContsInGame.ID_CHARACTER_CURRENT, mCharacter.idCharacter);
         }
         UpdateCharacter();
     }

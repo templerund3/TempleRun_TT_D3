@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     {
         //txtCoinPlayer.text = PlayerPrefs.GetInt("Coin").ToString();
         txtCoinValue.text = GameManager.Instance.coin.ToString();
-        txtLevelValue.text = "Level " + GameManager.Instance.level.ToString();
+        txtLevelValue.text = ContsInGame.LEVEL_TEXT + " " + GameManager.Instance.level.ToString();
     }
 
     /// <summary>
