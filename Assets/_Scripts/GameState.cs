@@ -30,7 +30,6 @@ public class GameState : MonoBehaviour
     void Start()
     {
         gamestate = STATE.NONE;
-        gamestate = STATE.PLAYING;
     }
 
 
