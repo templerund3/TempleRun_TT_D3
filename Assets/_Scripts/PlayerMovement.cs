@@ -21,10 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isShield;
     private bool isMagnet;
 
-    [Header("PanelInGame")]
-    public GameObject panelWin;
-    public GameObject panelOver;
-
+    float timeCounter = 0f;
+    float trailTime = 1.5f;
 
 
     // Use this for initialization
@@ -37,20 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        isGround = false;
-        doubleJump = false;
-        isShield = false;
-        isMagnet = false;
-        if (anim)
-        {
-            anim.SetBool("EDie", false);
-            anim.SetBool("isDie", false);
-            anim.SetBool("isGround", false);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -60,18 +44,10 @@ public class PlayerMovement : MonoBehaviour
             if (isGround)
             {
                 doubleJump = false;
-                if (gameVirtual.activeInHierarchy)
-                {
-                    gameVirtual.SetActive(false);
-                }
+                GameObject obj = Instantiate(gameVirtual, transform.position + new Vector3(0, 0, 1),Quaternion.identity);
+                Destroy(obj, 0.5f);
             }
-            else
-            {
-                if (!gameVirtual.activeInHierarchy)
-                {
-                    gameVirtual.SetActive(true);
-                }
-            }
+
             if (Input.GetKeyDown(KeyCode.Space) && isGround)
             {
                 Jump();
@@ -81,12 +57,13 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
                 doubleJump = true;
             }
+
         }
     }
 
     public void Jump()
     {
-        gameVirtual.transform.position = transform.position;
+        //gameVirtual.transform.position = transform.position;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
@@ -172,12 +149,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameWin()
     {
-        panelWin.SetActive(true);
+        GameManager.Instance.panelGameWin.SetActive(true);
+        Destroy(gameObject);
     }
 
     public void GameOver()
     {
-        panelOver.SetActive(true);
+        GameManager.Instance.panelGameOver.SetActive(true);
+        Destroy(gameObject);
     }
 
 }
