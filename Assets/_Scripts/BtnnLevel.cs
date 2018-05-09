@@ -8,6 +8,7 @@ public class BtnnLevel : MonoBehaviour {
     public int Level;
     public Text txtLevel;
     public Image imgStar;
+    public Image imgBtnLevel;
 
 	// Use this for initialization
 	void Start () {

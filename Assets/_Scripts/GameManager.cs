@@ -36,9 +36,7 @@ public class GameManager : MonoBehaviour {
 
     public void BtnStartOnclick()
     {
-        
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
-        
     }
 
     public void StartGame()
