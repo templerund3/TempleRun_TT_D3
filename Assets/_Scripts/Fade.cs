@@ -14,17 +14,14 @@ public class Fade : MonoBehaviour {
     }
 
     public FadeState state;
-    [HideInInspector] public Animator anim;
+    private Animator anim;
 
     void Awake()
     {
         Instance = this;
-    }
-
-    void Start()
-    {
         anim = this.GetComponent<Animator>();
     }
+
 
     public void StartFade()
     {

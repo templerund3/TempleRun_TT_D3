@@ -43,42 +43,8 @@ public class BtnnLevel : MonoBehaviour {
     {
         if (PlayerPrefs.GetString("StarLevel" + Level) != "")
         {
-            ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> LoadLevelMap());
+            GameManager.Instance.LoadLevel(4f, Level);
         }
-    }
-
-    public void LoadLevelMap()
-    {
-        GameObject mapLevelCurrent = Resources.Load("Map" + Level) as GameObject;
-        if (GameManager.Instance.mapObj.childCount > 0)
-        {
-            Destroy(GameManager.Instance.mapObj.GetChild(0));
-        }
-        Instantiate(mapLevelCurrent, GameManager.Instance.mapObj);
-        StartCoroutine(StartLevel(3f));
-    }
-
-    public IEnumerator StartLevel(float _a)
-    {
-        GameManager.Instance.panelReady.SetActive(true);
-        while(_a>0)
-        {
-
-            GameManager.Instance.panelReady.transform.GetChild(0).GetComponent<Text>().text = _a.ToString();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForSeconds(1f);
-            _a--;
-            if(_a == 0)
-            {
-                GameManager.Instance.panelReady.transform.GetChild(0).GetComponent<Text>().text = "Go";
-                GameState.Instance.gamestate = STATE.PLAYING;
-                GameManager.Instance.player.transform.position = new Vector3(-3.8f, 2f, 0f);
-                GameManager.Instance.panelReady.SetActive(false);
-                GameManager.Instance.player.SetActive(true);
-            }
-
-        }
-       
     }
 
 }
