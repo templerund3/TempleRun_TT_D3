@@ -42,7 +42,7 @@ public class SnapScrolling : MonoBehaviour {
         {
             instPans[i] = Instantiate(panPrefab, transform, false);
             instPans[i].GetComponent<ItemScroll>().ID = i;
-            instPans[i].GetComponent<ItemScroll>().Init();
+            instPans[i].GetComponent<ItemScroll>().InitItem();
             if (i == 0) continue;
             instPans[i].transform.localPosition = new Vector2(instPans[i - 1].transform.localPosition.x + panPrefab.GetComponent<RectTransform>().sizeDelta.x + panOffset+500f,
                 instPans[i].transform.localPosition.y);

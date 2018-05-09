@@ -12,6 +12,25 @@ public class GameManager : MonoBehaviour {
         if (Instance != null)
             return;
         Instance = this;
+
+        PlayerPrefs.DeleteAll();
+        for (int i = 1; i <= 24; i++)
+        {
+            if (i == 1)
+            {
+                if (!PlayerPrefs.HasKey("StarLevel" + i))
+                {
+                    PlayerPrefs.SetString("StarLevel" + i, "0");
+                }
+            }
+            else
+            {
+                if (!PlayerPrefs.HasKey("StarLevel" + i))
+                {
+                    PlayerPrefs.SetString("StarLevel" + i, "");
+                }
+            }
+        }
     }
 
     public int coin = 0;
@@ -22,27 +41,12 @@ public class GameManager : MonoBehaviour {
     public GameObject panelReady;
     public GameObject player;
 
-    public BtnnLevel[] arrayLevels;
+    public Transform mapObj;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void BtnStartOnclick()
     {
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
-    }
-
-    public void StartGame()
-    {
-        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay);
-        StartCoroutine(ActionTimer(3f, () => panelReady.SetActive(true), () => PlayingGame()));
     }
 
     public void BtnPauseOnClick()
@@ -80,6 +84,6 @@ public class GameManager : MonoBehaviour {
         player.transform.position = new Vector3(-3.8f, 2f, 0f);
         panelReady.SetActive(false);
         player.SetActive(true);
-        
+
     }
 }
