@@ -177,12 +177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64086fe78900aea448da68066c63a402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameVirtual: {fileID: 0}
+  gameVirtual: {fileID: 1589228939541194, guid: 0f75f328dd55a9f438dcea457bfee4d7,
+    type: 2}
   shieldPlayer: {fileID: 1233214115629184, guid: d4f6d91d89720a6498e63e91cc6d2d10,
     type: 2}
   Objshield: {fileID: 0}
-  panelWin: {fileID: 0}
-  panelOver: {fileID: 0}
 --- !u!198 &198164771260840346
 ParticleSystem:
   m_ObjectHideFlags: 1

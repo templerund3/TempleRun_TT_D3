@@ -20,14 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4629990150453330}
   - component: {fileID: 212722483600879636}
-  - component: {fileID: 114424984084557938}
   m_Layer: 0
   m_Name: PlayerJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4629990150453330
 Transform:
   m_ObjectHideFlags: 1
@@ -41,19 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114424984084557938
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1589228939541194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d77ded5e6c9f164cbea974e5185026a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overTime: 0.05
-  _parent: {fileID: 0}
 --- !u!212 &212722483600879636
 SpriteRenderer:
   m_ObjectHideFlags: 1
