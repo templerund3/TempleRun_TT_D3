@@ -19,19 +19,21 @@ public class GameManager : MonoBehaviour {
         {
             if (i == 1)
             {
-                if (!PlayerPrefs.HasKey("StarLevel" + i))
+                if (!PlayerPrefs.HasKey(ContsInGame.STARLEVEL + i))
                 {
-                    PlayerPrefs.SetString("StarLevel" + i, "0");
+                    PlayerPrefs.SetString(ContsInGame.STARLEVEL + i, "0");
                 }
             }
             else
             {
-                if (!PlayerPrefs.HasKey("StarLevel" + i))
+                if (!PlayerPrefs.HasKey(ContsInGame.STARLEVEL + i))
                 {
-                    PlayerPrefs.SetString("StarLevel" + i, "");
+                    PlayerPrefs.SetString(ContsInGame.STARLEVEL + i, "");
                 }
             }
         }
+
+        PlayerPrefs.SetInt(ContsInGame.COIN, 900);
     }
 
     public int coin = 0;
@@ -51,13 +53,17 @@ public class GameManager : MonoBehaviour {
 
     public void BtnStartOnclick()
     {
+        panelGameOver.SetActive(false);
+        panelGameWin.SetActive(false);
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
     }
 
     public void BtnPauseOnClick()
     {
-        panelPause.SetActive(true);
         Time.timeScale = 0;
+        GameState.Instance.gamestate = STATE.NONE;
+        panelPause.SetActive(true);
+        
     }
 
     public void BtnResumeOnClick()
@@ -67,6 +73,7 @@ public class GameManager : MonoBehaviour {
         panelGameWin.SetActive(false);
         Time.timeScale = 1f;
         panelPause.SetActive(false);
+        GameState.Instance.gamestate = STATE.PLAYING;
     }
 
     public void BtnGotoHomeOnClick()
@@ -82,23 +89,25 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLevel(float index,int _level)
     {
-        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> StartCoroutine(StartLevel(index, _level)));
-        
-    }
-
-    public IEnumerator StartLevel(float _a, int _level)
-    {
-        level = _level;
+        GameManager.Instance.coin = 0;
         GameObject mapLevelCurrent = Resources.Load("Map" + _level) as GameObject;
         if (mapObj.childCount > 0)
         {
             Destroy(mapObj.GetChild(0).gameObject);
         }
         Instantiate(mapLevelCurrent, mapObj);
+        mapObj.position = Vector3.zero;
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> StartCoroutine(StartLevel(index, _level)));
+        
+    }
+
+    public IEnumerator StartLevel(float _a, int _level)
+    {
+        level = _level; 
         panelReady.SetActive(true);
         yield return new WaitForSeconds(3f);
-        mapObj.position = Vector3.zero;
         objPlayer = Instantiate(player, sceneGamePlay) as GameObject;
+        objPlayer.GetComponent<Animator>().SetFloat("Index", (float)PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT));
         panelReady.SetActive(false);
         GameState.Instance.gamestate = STATE.PLAYING;
         

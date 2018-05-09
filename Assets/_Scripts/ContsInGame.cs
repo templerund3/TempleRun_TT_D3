@@ -18,5 +18,7 @@ public class ContsInGame : MonoBehaviour
     public static string CHARACTER = "Character";
 
     public static string MUSIC = "Music"; //=0 OnMusic, = 1 OffMusic
+
+    public static string STARLEVEL = "StarLevel";
     #endregion
 }

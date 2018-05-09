@@ -48,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(obj, 0.5f);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGround)
+            if (Input.GetMouseButtonDown(0) && isGround)
             {
                 Jump();
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !isGround && !doubleJump)
+            if (Input.GetMouseButtonDown(0) && !isGround && !doubleJump)
             {
                 Jump();
                 doubleJump = true;
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Gold"))
         {
+            MusicController.Instance.PlayCoinSound();
             GameManager.Instance.coin++;
             Destroy(collision.gameObject);
         }
@@ -97,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
             if (!isShield)
             {
                 anim.SetBool("EDie", true);
+                MusicController.Instance.PlayDieSound();
                 StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
                 GameState.Instance.gamestate = STATE.GAMEOVER;
             }
@@ -114,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
             if (!isShield)
             {
                 anim.SetBool("isDie", true);
+                MusicController.Instance.PlayDieSound();
                 StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
                 GameState.Instance.gamestate = STATE.GAMEOVER;
             }
@@ -128,12 +131,29 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Spring"))
         {
+            MusicController.Instance.PlayJumpSound();
             collision.GetComponent<Animator>().enabled = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.5f);
         }
         if (collision.CompareTag("Finish"))
         {
             GameState.Instance.gamestate = STATE.GAMEWIN;
+            int star = 0;
+            if(GameManager.Instance.coin >= 3)
+            {
+                star = 1;
+            }
+            if (GameManager.Instance.coin >= 5)
+            {
+                star = 2;
+            }
+            if (GameManager.Instance.coin >= 10)
+            {
+                star = 3;
+            }
+            PlayerPrefs.SetString(ContsInGame.STARLEVEL + GameManager.Instance.level, star.ToString());
+            PlayerPrefs.SetString(ContsInGame.STARLEVEL + (GameManager.Instance.level+1),"0");
+            PlayerPrefs.SetInt(ContsInGame.COIN , PlayerPrefs.GetInt(ContsInGame.COIN)+ GameManager.Instance.coin);
             GameWin();
         }
     }
@@ -149,12 +169,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameWin()
     {
+        MusicController.Instance.PlayWinSound();
         GameManager.Instance.panelGameWin.SetActive(true);
         Destroy(gameObject);
     }
 
     public void GameOver()
     {
+        MusicController.Instance.PlayLoseSound();
         GameManager.Instance.panelGameOver.SetActive(true);
         Destroy(gameObject);
     }
