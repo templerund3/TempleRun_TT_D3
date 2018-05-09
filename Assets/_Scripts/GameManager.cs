@@ -69,21 +69,4 @@ public class GameManager : MonoBehaviour {
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
     }
 
-    public IEnumerator ActionTimer(float time, UnityAction actionBegin = null, UnityAction actionEnd = null)
-    {
-        if (actionBegin != null)
-            actionBegin();
-        yield return new WaitForSeconds(time);
-        if (actionEnd != null)
-            actionEnd();
-    }
-
-    public void PlayingGame()
-    {
-        GameState.Instance.gamestate = STATE.PLAYING;
-        player.transform.position = new Vector3(-3.8f, 2f, 0f);
-        panelReady.SetActive(false);
-        player.SetActive(true);
-
-    }
 }
