@@ -10,8 +10,17 @@ public class LoadMapJson : MonoBehaviour
     void Start()
     {
         //LoadMapFromJson(1);
+        //StartCoroutine(abc());
     }
 
+    IEnumerator abc()
+    {
+        Debug.Log("a");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("b");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("c");
+    }
     //public void ReadMapFromJson(int _level)
     //{
     //    string dbPath = "";
