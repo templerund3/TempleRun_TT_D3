@@ -44,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
             if (isGround)
             {
                 doubleJump = false;
-                GameObject obj = Instantiate(gameVirtual, transform.position + new Vector3(0, 0, 1),Quaternion.identity);
-                Destroy(obj, 0.5f);
+                //GameObject obj = Instantiate(gameVirtual, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
+                //Destroy(obj, 0.5f);
             }
 
             if (Input.GetMouseButtonDown(0) && isGround)
@@ -79,19 +79,19 @@ public class PlayerMovement : MonoBehaviour
         {
             Objshield = Instantiate<GameObject>(shieldPlayer, transform);
             isShield = true;
-            StartCoroutine(ActionTimer(5f, null , () =>
-            {
-                isShield = false;
-                if (Objshield != null)
-                {
-                    Destroy(Objshield);
-                }
-            }));
+            StartCoroutine(ActionTimer(5f, null, () =>
+           {
+               isShield = false;
+               if (Objshield != null)
+               {
+                   Destroy(Objshield);
+               }
+           }));
         }
         if (collision.CompareTag("Magnet"))
         {
             isMagnet = true;
-            StartCoroutine(ActionTimer(5f,null, () => isMagnet = false));
+            StartCoroutine(ActionTimer(5f, null, () => isMagnet = false));
         }
         if (collision.CompareTag("ElectricOBstacle"))
         {
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GameState.Instance.gamestate = STATE.GAMEWIN;
             int star = 0;
-            if(GameManager.Instance.coin >= 3)
+            if (GameManager.Instance.coin >= 3)
             {
                 star = 1;
             }
@@ -152,8 +152,10 @@ public class PlayerMovement : MonoBehaviour
                 star = 3;
             }
             PlayerPrefs.SetString(ContsInGame.STARLEVEL + GameManager.Instance.level, star.ToString());
-            PlayerPrefs.SetString(ContsInGame.STARLEVEL + (GameManager.Instance.level+1),"0");
-            PlayerPrefs.SetInt(ContsInGame.COIN , PlayerPrefs.GetInt(ContsInGame.COIN)+ GameManager.Instance.coin);
+            PlayerPrefs.SetString(ContsInGame.STARLEVEL + (GameManager.Instance.level + 1), "0");
+            PlayerPrefs.SetInt(ContsInGame.COIN, PlayerPrefs.GetInt(ContsInGame.COIN) + GameManager.Instance.coin);
+            UIManager.Instance.txtCoinWin.text = GameManager.Instance.coin.ToString();
+            UIManager.Instance.starWinGame.sprite = UIManager.Instance.sprStar[star];
             GameWin();
         }
     }

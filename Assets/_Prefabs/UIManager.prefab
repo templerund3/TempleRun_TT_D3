@@ -78,3 +78,5 @@ MonoBehaviour:
   panelShop: {fileID: 0}
   txtCoinValue: {fileID: 0}
   txtLevelValue: {fileID: 0}
+  txtCoinWin: {fileID: 0}
+  starWinGame: {fileID: 0}

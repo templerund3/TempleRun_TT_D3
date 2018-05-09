@@ -12,8 +12,18 @@ public class UIManager : MonoBehaviour
     [Header("UI GamePlay")]
     public Text txtCoinValue;
     public Text txtLevelValue;
+    public Text txtCoinWin;
+    public Image starWinGame;
+    public Sprite[] sprStar;
 
-    
+    public static UIManager Instance;
+
+    void Awake()
+    {
+        if (Instance != null)
+            return;
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -39,7 +49,7 @@ public class UIManager : MonoBehaviour
         if (panelShop != null)
         {
             panelShop.SetActive(true);
-        }      
+        }
     }
 
     /// <summary>
