@@ -35,7 +35,7 @@ public class DashTrail : MonoBehaviour
             {
                 GameObject trail = GameObject.Instantiate(mTrailObject);
                 DashTrailObject trailObject = trail.GetComponent<DashTrailObject>();
-
+                trailObject.mRenderer.sprite = trailObject.sprPlayer[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
                 trailObject.Initiate(mTrailTime, mLeadingSprite.sprite, this);
                 trail.transform.position = transform.position;
                 trail.transform.localScale = mLeadingSprite.gameObject.transform.localScale;

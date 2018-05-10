@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour {
         panelReady.SetActive(true);
         yield return new WaitForSeconds(3f);
         objPlayer = Instantiate(player, sceneGamePlay) as GameObject;
-        Debug.Log(objPlayer);
         objPlayer.GetComponent<Animator>().SetFloat("Index", (float)PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT));
         panelReady.SetActive(false);
         GameState.Instance.gamestate = STATE.PLAYING;

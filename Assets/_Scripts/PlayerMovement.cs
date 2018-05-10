@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gameVirtual;
 
     [Header("Item")]
-    public GameObject shieldPlayer;
-    public GameObject Objshield;
+    private GameObject effectRun;
+    private GameObject shieldPlayer;
+    private GameObject magnetPlayer;
     private bool isShield;
     private bool isMagnet;
 
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     float trailTime = 1.5f;
 
 
-    // Use this for initialization
     void Start()
     {
 
@@ -34,9 +34,11 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         posCheckGround = transform.GetChild(0);
         dashtrail = GetComponent<DashTrail>();
+        effectRun = transform.GetChild(1).gameObject;
+        shieldPlayer = transform.GetChild(2).gameObject;
+        magnetPlayer = transform.GetChild(3).gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameState.Instance.gamestate == STATE.PLAYING)
@@ -46,10 +48,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 doubleJump = false;
                 dashtrail.SetEnabled(false);
+                effectRun.SetActive(true);
             }
             else
             {
                 dashtrail.SetEnabled(true);
+                effectRun.SetActive(false);
             }
 
             if (Input.GetMouseButtonDown(0) && isGround)
@@ -67,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        //gameVirtual.transform.position = transform.position;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
@@ -81,21 +84,23 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Shield"))
         {
-            Objshield = Instantiate<GameObject>(shieldPlayer, transform);
             isShield = true;
+            shieldPlayer.SetActive(true);
             StartCoroutine(ActionTimer(5f, null, () =>
            {
                isShield = false;
-               if (Objshield != null)
-               {
-                   Destroy(Objshield);
-               }
+               shieldPlayer.SetActive(false);
            }));
         }
         if (collision.CompareTag("Magnet"))
         {
             isMagnet = true;
-            StartCoroutine(ActionTimer(5f, null, () => isMagnet = false));
+            magnetPlayer.SetActive(true);
+            StartCoroutine(ActionTimer(5f, null, () =>
+            {
+                isMagnet = false;
+                magnetPlayer.SetActive(false);
+            }));
         }
         if (collision.CompareTag("ElectricOBstacle"))
         {
@@ -109,10 +114,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isShield = false;
-                if (Objshield != null)
-                {
-                    Destroy(Objshield);
-                }
+                shieldPlayer.SetActive(false);
             }
         }
         if (collision.CompareTag("Obstacle"))
@@ -127,10 +129,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isShield = false;
-                if (Objshield != null)
-                {
-                    Destroy(Objshield);
-                }
+                shieldPlayer.SetActive(false);
             }
         }
         if (collision.CompareTag("Spring"))
@@ -185,6 +184,11 @@ public class PlayerMovement : MonoBehaviour
         MusicController.Instance.PlayLoseSound();
         GameManager.Instance.panelGameOver.SetActive(true);
         Destroy(gameObject);
+    }
+
+    public bool IsMagnet()
+    {
+        return isMagnet;
     }
 
 }

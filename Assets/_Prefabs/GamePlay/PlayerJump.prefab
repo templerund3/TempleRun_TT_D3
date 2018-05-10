@@ -66,6 +66,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mRenderer: {fileID: 212722483600879636}
+  sprPlayer:
+  - {fileID: 21300000, guid: 936c645ba7599a44d93f27561dbb381f, type: 3}
+  - {fileID: 21300000, guid: 9e303a5beeeb4ed458cfe6e0eea8bec3, type: 3}
+  - {fileID: 21300000, guid: 3d811d27105e6e04caf1bf028df9fd07, type: 3}
   mStartColor: {r: 1, g: 1, b: 1, a: 1}
   mEndColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!212 &212722483600879636

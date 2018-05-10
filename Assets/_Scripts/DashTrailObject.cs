@@ -4,6 +4,7 @@ using System.Collections;
 public class DashTrailObject : MonoBehaviour
 {
     public SpriteRenderer mRenderer;
+    public Sprite[] sprPlayer;
     public Color mStartColor, mEndColor;
 
     private float mDisplayTime;
