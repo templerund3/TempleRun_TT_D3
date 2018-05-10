@@ -51,16 +51,15 @@ public class GameManager : MonoBehaviour {
     public Transform mapObj;
 
 
-    public void BtnStartOnclick()
+    public void BtnSelectLevelOnclick()
     {
-        panelGameOver.SetActive(false);
-        panelGameWin.SetActive(false);
+        HidePanelAll();
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
     }
 
     public void BtnPauseOnClick()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0.0f;
         GameState.Instance.gamestate = STATE.NONE;
         panelPause.SetActive(true);
         
@@ -68,59 +67,75 @@ public class GameManager : MonoBehaviour {
 
     public void BtnResumeOnClick()
     {
-        panelPause.SetActive(false);
-        panelGameOver.SetActive(false);
-        panelGameWin.SetActive(false);
-        Time.timeScale = 1f;
-        panelPause.SetActive(false);
+        HidePanelAll();
         GameState.Instance.gamestate = STATE.PLAYING;
     }
 
-    public void BtnGotoHomeOnClick()
+    public void BtnHomeOnClick()
     {
-        panelPause.SetActive(false);
-        panelGameOver.SetActive(false);
-        panelGameWin.SetActive(false);
+        HidePanelAll();
         GameState.Instance.gamestate = STATE.NONE;
-        Time.timeScale = 1f;
-        panelPause.SetActive(false);
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
     }
 
-    public void LoadLevel(float index,int _level)
+    public void LoadLevel(float timeLoad,int mLevel)
     {
-        GameManager.Instance.coin = 0;
-        GameObject mapLevelCurrent = Resources.Load("Map" + _level) as GameObject;
-        if (mapObj.childCount > 0)
-        {
-            Destroy(mapObj.GetChild(0).gameObject);
-        }
+        ResetLevel();
+        GameObject mapLevelCurrent = Resources.Load("Map" + mLevel) as GameObject;
         Instantiate(mapLevelCurrent, mapObj);
         mapObj.position = Vector3.zero;
-        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> StartCoroutine(StartLevel(index, _level)));
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> StartCoroutine(StartLevel(timeLoad, mLevel)));
         
     }
 
-    public IEnumerator StartLevel(float _a, int _level)
+    public IEnumerator StartLevel(float timeLoad, int mLevel)
     {
-        level = _level; 
+        level = mLevel; 
         panelReady.SetActive(true);
         yield return new WaitForSeconds(3f);
         objPlayer = Instantiate(player, sceneGamePlay) as GameObject;
+        Debug.Log(objPlayer);
         objPlayer.GetComponent<Animator>().SetFloat("Index", (float)PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT));
         panelReady.SetActive(false);
         GameState.Instance.gamestate = STATE.PLAYING;
         
     }
 
-    public void Replay()
+    public void BtnReplayOnclick()
     {
+        ResetLevel();
+        HidePanelAll();
+        LoadLevel(3f,level);
+    }
+
+    public void BtnNextLevelOnclick()
+    {
+        ResetLevel();
+        HidePanelAll();
+        LoadLevel(3f, level+1);
+    }
+
+    public void ResetLevel()
+    {
+        coin = 0;
         Time.timeScale = 1f;
+        if (objPlayer != null)
+        {
+            Destroy(objPlayer);
+        }
+        foreach (Transform childTransform in mapObj.transform)
+        {
+            Destroy(childTransform.gameObject);
+        }
+    }
+
+    public void HidePanelAll()
+    {
+        Time.timeScale = 1.0f;
         panelPause.SetActive(false);
         panelGameOver.SetActive(false);
         panelGameWin.SetActive(false);
         panelReady.SetActive(false);
-        LoadLevel(3f,level);
     }
 
 }

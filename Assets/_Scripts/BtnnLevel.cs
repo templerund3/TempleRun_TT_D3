@@ -34,8 +34,6 @@ public class BtnnLevel : MonoBehaviour {
             imgStar.gameObject.SetActive(true);
             txtLevel.text = Level.ToString();
             imgStar.sprite = sprStar[int.Parse(PlayerPrefs.GetString("StarLevel" + Level))];
-            gameObject.GetComponent<Button>().onClick.AddListener(() => BtnLevelOnclick());
-
         }
     }
 

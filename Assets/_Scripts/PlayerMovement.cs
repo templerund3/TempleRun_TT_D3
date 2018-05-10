@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
+    private DashTrail dashtrail;
 
     private bool isGround;
     private bool doubleJump;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         posCheckGround = transform.GetChild(0);
-
+        dashtrail = GetComponent<DashTrail>();
     }
 
     // Update is called once per frame
@@ -44,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
             if (isGround)
             {
                 doubleJump = false;
-                //GameObject obj = Instantiate(gameVirtual, transform.position + new Vector3(0, 0, 1), Quaternion.identity);
-                //Destroy(obj, 0.5f);
+                dashtrail.SetEnabled(false);
+            }
+            else
+            {
+                dashtrail.SetEnabled(true);
             }
 
             if (Input.GetMouseButtonDown(0) && isGround)
