@@ -2762,7 +2762,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00018566847, y: -0.011034727}
+  m_Offset: {x: 0.00018572807, y: -0.21342373}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2773,7 +2773,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.28855, y: 7.074363}
+  m_Size: {x: 2.28855, y: 6.669585}
   m_EdgeRadius: 0
 --- !u!61 &61108841857421164
 BoxCollider2D:
@@ -2812,7 +2812,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3.562777}
+  m_Offset: {x: 0, y: 3.373461}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2823,7 +2823,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3, y: 0.054445505}
+  m_Size: {x: 2.3, y: 0.43307734}
   m_EdgeRadius: 0
 --- !u!61 &61322952164686884
 BoxCollider2D:
@@ -2912,7 +2912,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3.562777}
+  m_Offset: {x: 0, y: 3.3622622}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2923,7 +2923,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3, y: 0.054445505}
+  m_Size: {x: 2.3, y: 0.4554751}
   m_EdgeRadius: 0
 --- !u!61 &61492308991093460
 BoxCollider2D:
@@ -3012,7 +3012,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00018566847, y: -0.011034727}
+  m_Offset: {x: 0.00018572807, y: -0.21342373}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3023,7 +3023,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.28855, y: 7.074363}
+  m_Size: {x: 2.28855, y: 6.669585}
   m_EdgeRadius: 0
 --- !u!61 &61648674111769988
 BoxCollider2D:
