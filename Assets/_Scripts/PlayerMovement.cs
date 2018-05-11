@@ -205,5 +205,6 @@ public class PlayerMovement : MonoBehaviour
     {
         return isMagnet;
     }
-
+    //test1
+    //test2
 }
