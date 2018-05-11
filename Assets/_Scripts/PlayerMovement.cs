@@ -166,7 +166,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 star = 3;
             }
-            PlayerPrefs.SetString(ContsInGame.STARLEVEL + GameManager.Instance.level, star.ToString());
+            if (star > int.Parse(PlayerPrefs.GetString(ContsInGame.STARLEVEL + GameManager.Instance.level)))
+            {
+                PlayerPrefs.SetString(ContsInGame.STARLEVEL + GameManager.Instance.level, star.ToString());
+            }
             PlayerPrefs.SetString(ContsInGame.STARLEVEL + (GameManager.Instance.level + 1), "0");
             PlayerPrefs.SetInt(ContsInGame.COIN, PlayerPrefs.GetInt(ContsInGame.COIN) + GameManager.Instance.coin);
             UIManager.Instance.txtCoinWin.text = GameManager.Instance.coin.ToString();
