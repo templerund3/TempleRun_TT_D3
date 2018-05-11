@@ -90,17 +90,20 @@ public class ShopManager : MonoSingleton<ShopManager>
 
     public void ResetScrollCharacter()
     {
+        
         mCharacter = lstcharacter[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
         scrollCharacter.horizontalNormalizedPosition = deltaPosScrollCharacter * PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT);
         if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) <= 0)
         {
             buttonPre.gameObject.SetActive(false);
+            buttonNext.gameObject.SetActive(true);
         }
         else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) >= lstcharacter.Count)
         {
             buttonNext.gameObject.SetActive(false);
+            buttonPre.gameObject.SetActive(true);
         }
-        else
+        else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) > 0 && PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) < lstcharacter.Count)
         {
             buttonPre.gameObject.SetActive(true);
             buttonNext.gameObject.SetActive(true);
