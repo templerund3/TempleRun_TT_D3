@@ -9,6 +9,7 @@ public class MusicController : MonoSingleton<MusicController>
     private bool isOn; //biến check có bật music hay không ?
 
     public Button buttonMusic;
+    public Button buttonMusic_inGamePlayScene;
     public Sprite isOnSprite;
     public Sprite isOffSprite;
 
@@ -45,6 +46,7 @@ public class MusicController : MonoSingleton<MusicController>
     private void UpdateButtons()
     {
         buttonMusic.gameObject.GetComponent<Image>().sprite = isOn ? isOnSprite : isOffSprite;
+        buttonMusic_inGamePlayScene.gameObject.GetComponent<Image>().sprite = isOn ? isOnSprite : isOffSprite;
         if(isOn)
         {
             PlayerPrefs.SetInt(ContsInGame.MUSIC, 0);

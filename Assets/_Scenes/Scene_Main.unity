@@ -347,10 +347,15 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 762321584}
+      objectReference: {fileID: 650359026}
     - target: {fileID: 1185031843061844, guid: 5887b7ef48fc45040bce7d163e83fc5b, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114548568725984884, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: btnMusic
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5887b7ef48fc45040bce7d163e83fc5b, type: 2}
@@ -644,12 +649,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1371208002}
   m_Script: {fileID: 11500000, guid: f7690bc7a33492e45943c725bbe1764a, type: 3}
---- !u!114 &762321584 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114860322303175490, guid: 7fef228dc8d6897478dbaf6ac9f24cdb,
-    type: 2}
-  m_PrefabInternal: {fileID: 1151273147}
-  m_Script: {fileID: 11500000, guid: 5c8db34a2aae3f941ae050db50e199f9, type: 3}
 --- !u!1 &785301617
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +806,11 @@ Prefab:
       propertyPath: buttonMusic
       value: 
       objectReference: {fileID: 1377818467}
+    - target: {fileID: 114860322303175490, guid: 7fef228dc8d6897478dbaf6ac9f24cdb,
+        type: 2}
+      propertyPath: buttonMusic_inGamePlayScene
+      value: 
+      objectReference: {fileID: 1964823061}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fef228dc8d6897478dbaf6ac9f24cdb, type: 2}
   m_IsPrefabParent: 0
@@ -954,10 +958,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4968626772356576, guid: 0eaafe234c49c2a4d9c019903cf2fba0, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470873896466348, guid: 0eaafe234c49c2a4d9c019903cf2fba0, type: 2}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1111,6 +1111,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1371208002}
   m_Script: {fileID: 11500000, guid: f7690bc7a33492e45943c725bbe1764a, type: 3}
+--- !u!114 &1964823061 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114548568725984884, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+    type: 2}
+  m_PrefabInternal: {fileID: 265008924}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2030479744 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1012222434638668, guid: 5e604296fc4a96144b874a1843de19fb,
