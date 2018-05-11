@@ -96,15 +96,15 @@ public static class NativeShare
 			using (AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
 			using (AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity"))
 			{
-                if (chooser)
-                {
+                //if (chooser)
+                //{
                     AndroidJavaObject jChooser = intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, chooserText);
                     currentActivity.Call("startActivity", jChooser);
-                }
-                else
-                {
-                    currentActivity.Call("startActivity", intentObject);
-                }
+                //}
+                //else
+                //{
+                //    currentActivity.Call("startActivity", intentObject);
+                //}
             }
 		}
 	}
