@@ -18,6 +18,7 @@ public class ShopManager : MonoSingleton<ShopManager>
     [Header("Character Information")]
     public Text nameCharacter;
     public Text costCharacter;
+    float deltaPosScrollCharacter = 0.33f;
 
     public GameObject panelDialog;
 
@@ -25,6 +26,8 @@ public class ShopManager : MonoSingleton<ShopManager>
     {
         //PlayerPrefs.SetInt("idCharacterCurrent", 0);
         //PlayerPrefs.SetInt("Coin", 900);
+        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt(ContsInGame.CHARACTER + 0, 1);
         mCharacter = lstcharacter[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
         if (mCharacter.idCharacter <= 0)
         {
@@ -34,26 +37,14 @@ public class ShopManager : MonoSingleton<ShopManager>
         {
             buttonNext.gameObject.SetActive(false);
         }
-        UpdateCharacter();
-
-        for (int i = 0; i < lstcharacter.Count; i++)
-        {
-            if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT + i) == 0) //chưa mua
-            {
-                lstcharacter[i].isBuy = false;
-            }
-            else //đã mua
-            {
-                lstcharacter[i].isBuy = true;
-            }
-        }
+        UpdateCharacter();      
     }
 
     public void btnNext()
     {
         MusicController.Instance.PlayUIClick();
 
-        scrollCharacter.horizontalNormalizedPosition += 0.33f;
+        scrollCharacter.horizontalNormalizedPosition += deltaPosScrollCharacter;
         mCharacter = lstcharacter[mCharacter.idCharacter+1];
         buttonPre.gameObject.SetActive(true);
         if (mCharacter.idCharacter >= lstcharacter.Count-1)
@@ -67,7 +58,7 @@ public class ShopManager : MonoSingleton<ShopManager>
     {
         MusicController.Instance.PlayUIClick();
 
-        scrollCharacter.horizontalNormalizedPosition -= 0.33f;
+        scrollCharacter.horizontalNormalizedPosition -= deltaPosScrollCharacter;
         mCharacter = lstcharacter[mCharacter.idCharacter-1];
         buttonNext.gameObject.SetActive(true);
         if (mCharacter.idCharacter <= 0)
@@ -80,11 +71,11 @@ public class ShopManager : MonoSingleton<ShopManager>
     private void UpdateCharacter()
     {
         nameCharacter.text = mCharacter.nameCharacter;
-        if(PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) == mCharacter.idCharacter && mCharacter.isBuy)
+        if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) == mCharacter.idCharacter && PlayerPrefs.GetInt(ContsInGame.CHARACTER + mCharacter.idCharacter) == 1)
         {
             costCharacter.text = ContsInGame.SELECTED_TEXT;
         }
-        else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) != mCharacter.idCharacter && mCharacter.isBuy)
+        else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) != mCharacter.idCharacter && PlayerPrefs.GetInt(ContsInGame.CHARACTER + mCharacter.idCharacter) == 1)
         {
             costCharacter.text = ContsInGame.SELECT_TEXT;
         }
@@ -97,18 +88,38 @@ public class ShopManager : MonoSingleton<ShopManager>
         
     }
 
+    public void ResetScrollCharacter()
+    {
+        mCharacter = lstcharacter[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
+        scrollCharacter.horizontalNormalizedPosition = deltaPosScrollCharacter * PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT);
+        if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) <= 0)
+        {
+            buttonPre.gameObject.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT) >= lstcharacter.Count)
+        {
+            buttonNext.gameObject.SetActive(false);
+        }
+        else
+        {
+            buttonPre.gameObject.SetActive(true);
+            buttonNext.gameObject.SetActive(true);
+        }
+        UpdateCharacter();
+    }
+
     public void btnBuyCharacter()
     {
         MusicController.Instance.PlayUIClick();
 
-        if(!mCharacter.isBuy)
+        if (PlayerPrefs.GetInt(ContsInGame.CHARACTER + mCharacter.idCharacter) == 0)
         {
             if (PlayerPrefs.GetInt(ContsInGame.COIN) >= mCharacter.costCharacter)
             {
                 PlayerPrefs.SetInt(ContsInGame.COIN, PlayerPrefs.GetInt(ContsInGame.COIN) - mCharacter.costCharacter);
                 PlayerPrefs.SetInt(ContsInGame.ID_CHARACTER_CURRENT, mCharacter.idCharacter);
                 PlayerPrefs.SetInt(ContsInGame.CHARACTER + mCharacter.idCharacter, 1);
-                lstcharacter[mCharacter.idCharacter].isBuy = true;
+                //lstcharacter[mCharacter.idCharacter].isBuy = true;
             }
             else
             {
