@@ -298,8 +298,11 @@ MonoBehaviour:
   sceneGamePlay: {fileID: 1765070093}
   mapObj: {fileID: 1468488989}
   mainCamera: {fileID: 1610013074}
+  mapEndless: {fileID: 0}
   longHouse: {fileID: 0}
+  arrayItem: []
   posObjMapOld: {x: 0, y: 0, z: 0}
+  posObjHouse: {x: 0, y: 0, z: 0}
 --- !u!4 &305045153
 Transform:
   m_ObjectHideFlags: 0
@@ -994,6 +997,10 @@ Prefab:
       value: 
       objectReference: {fileID: 762321584}
     - target: {fileID: 1226803033594504, guid: 5887b7ef48fc45040bce7d163e83fc5b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185031843061844, guid: 5887b7ef48fc45040bce7d163e83fc5b, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
