@@ -60,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && isGround)
             {
-                Jump();
+                Jump(jumpForce);
             }
             if (Input.GetMouseButtonDown(0) && !isGround && !doubleJump)
             {
-                Jump();
+                Jump(jumpForce);
                 doubleJump = true;
             }
             if(transform.position.y <= -6f)
@@ -77,9 +77,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void Jump(float forejump)
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, forejump);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
