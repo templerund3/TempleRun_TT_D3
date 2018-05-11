@@ -62,9 +62,12 @@ public class GameManager : MonoBehaviour {
 
     public void BtnPauseOnClick()
     {
-        Time.timeScale = 0.0f;
-        GameState.Instance.gamestate = STATE.NONE;
-        panelPause.SetActive(true);
+        if (GameState.Instance.gamestate == STATE.PLAYING)
+        {
+            Time.timeScale = 0.0f;
+            GameState.Instance.gamestate = STATE.NONE;
+            panelPause.SetActive(true);
+        }
         
     }
 
