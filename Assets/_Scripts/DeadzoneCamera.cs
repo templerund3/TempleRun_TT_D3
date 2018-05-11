@@ -76,8 +76,8 @@ public class DeadzoneCamera : MonoBehaviour
         }
 
         Vector3 current = transform.position;
-        current.x = smoothPos.x; // we don't smooth horizontal movement
-
+        smoothPos = new Vector3(smoothPos.x, 0f, -10f);
+        current = smoothPos; // we don't smooth horizontal movement
         transform.position = Vector3.SmoothDamp(current, smoothPos, ref _currentVelocity, 0.1f);
     }
 }

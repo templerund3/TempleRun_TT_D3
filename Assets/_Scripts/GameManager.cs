@@ -48,10 +48,12 @@ public class GameManager : MonoBehaviour {
     public Transform sceneGamePlay;
 
     public Transform mapObj;
+    public DeadzoneCamera mainCamera;
 
 
     public void BtnSelectLevelOnclick()
     {
+        mainCamera.transform.position = new Vector3(0f, 0f, -10f);
         HidePanelAll();
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
     }
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour {
 
     public void BtnHomeOnClick()
     {
+        mainCamera.transform.position = new Vector3(0f, 0f, -10f);
         HidePanelAll();
         GameState.Instance.gamestate = STATE.NONE;
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
@@ -93,6 +96,10 @@ public class GameManager : MonoBehaviour {
         panelReady.SetActive(true);
         yield return new WaitForSeconds(3f);
         objPlayer = Instantiate(player, sceneGamePlay) as GameObject;
+        mainCamera.target = objPlayer.GetComponent<SpriteRenderer>();
+        Vector3 _smoothPos = objPlayer.transform.position;
+        _smoothPos.z = -10f;
+        mainCamera.smoothPos = _smoothPos;
         objPlayer.GetComponent<Animator>().SetFloat("Index", (float)PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT));
         panelReady.SetActive(false);
         GameState.Instance.gamestate = STATE.PLAYING;
@@ -134,6 +141,61 @@ public class GameManager : MonoBehaviour {
         panelGameOver.SetActive(false);
         panelGameWin.SetActive(false);
         panelReady.SetActive(false);
+    }
+
+    public Transform mapEndless;
+    public GameObject longHouse;
+    public GameObject[] arrayItem;
+    public Vector3 posObjMapOld;
+    public Vector3 posObjHouse = new Vector3(5f, -5f, 0f);
+    Vector2 randomMap;
+
+    public void ModeEndlessRun()
+    {
+        if(mapObj.transform.position.x <= (posObjMapOld.x - 5f))
+        {
+            for (int i = 0; i < 8; i+=2)
+            {
+                Vector2 randomMap = new Vector2(Random.Range(0, 1), Random.Range(0, 3));
+                if (randomMap.x == 1)
+                {
+                    Instantiate(longHouse, mapEndless).transform.position = posObjHouse;
+                    posObjHouse += new Vector3(5f, 0f, 0f);
+                    if (Random.Range(0, 1) == 1)
+                    {
+                        Instantiate(longHouse, mapEndless).transform.position = posObjHouse;
+                        randomMap = new Vector2(1, Random.Range(0, 3));
+                    }
+                    else
+                    {
+                        randomMap = new Vector2(0, Random.Range(0, 3));
+                        posObjHouse += new Vector3(5f, 0f, 0f);
+                    }
+                }
+                else
+                {
+                    posObjHouse += new Vector3(5f, 0f, 0f);
+                    Instantiate(longHouse, mapEndless).transform.position = posObjHouse;
+                    posObjHouse += new Vector3(5f, 0f, 0f);
+                }
+            }
+            
+        }
+    }
+
+    public void InstantiatePlatformer(int index)
+    {
+        if (index == 1)
+        {
+            Instantiate(longHouse, mapEndless).transform.position = posObjHouse;
+            posObjHouse += new Vector3(5f, 0f, 0f);
+        }
+        
+    }
+
+    public void InstantiateItem(int index)
+    {
+        Instantiate(arrayItem[index], mapEndless).transform.position = posObjHouse - new Vector3(-2.5f, -5f, 0f);
     }
 
 }
