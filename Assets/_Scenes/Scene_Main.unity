@@ -303,27 +303,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114743488579554102, guid: 5887b7ef48fc45040bce7d163e83fc5b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 305045152}
-    - target: {fileID: 114021503605397716, guid: 5887b7ef48fc45040bce7d163e83fc5b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 305045152}
     - target: {fileID: 114877078169783168, guid: 5887b7ef48fc45040bce7d163e83fc5b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 305045152}
-    - target: {fileID: 114830402023472490, guid: 5887b7ef48fc45040bce7d163e83fc5b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 787064929}
-    - target: {fileID: 114620121235576118, guid: 5887b7ef48fc45040bce7d163e83fc5b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -338,7 +318,27 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 305045152}
+    - target: {fileID: 114021503605397716, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 305045152}
+    - target: {fileID: 114830402023472490, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 650359026}
     - target: {fileID: 114034795341241514, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 305045152}
+    - target: {fileID: 114620121235576118, guid: 5887b7ef48fc45040bce7d163e83fc5b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 305045152}
+    - target: {fileID: 114743488579554102, guid: 5887b7ef48fc45040bce7d163e83fc5b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -357,6 +357,7 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: btnMusic
       objectReference: {fileID: 0}
+      objectReference: {fileID: 762321584}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5887b7ef48fc45040bce7d163e83fc5b, type: 2}
   m_IsPrefabParent: 0
