@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-
-        PlayerPrefs.SetInt(ContsInGame.COIN, 900);
+        if (!PlayerPrefs.HasKey(ContsInGame.COIN))
+        {
+            PlayerPrefs.SetInt(ContsInGame.COIN, 500);
+        }
     }
 
     public int coin = 0;
