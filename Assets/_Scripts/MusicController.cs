@@ -9,7 +9,7 @@ public class MusicController : MonoSingleton<MusicController>
     private bool isOn; //biến check có bật music hay không ?
 
     public Button buttonMusic;
-    public Button buttonMusic_inGamePlayScene;
+    public Button buttonMusic_inGamePlayScene; //btn in GamePlay scene
     public Sprite isOnSprite;
     public Sprite isOffSprite;
 
