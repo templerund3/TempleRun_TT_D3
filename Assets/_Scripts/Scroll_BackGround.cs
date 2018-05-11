@@ -14,6 +14,10 @@ public class Scroll_BackGround : MonoBehaviour {
 
     void Update()
     {
+        if (material_BG.Length > 1)
+        {
+            gameObject.GetComponent<Renderer>().material = material_BG[GameManager.Instance.indexMap];
+        }
         if (!isHome)
         {
             if (GameState.Instance.gamestate == STATE.PLAYING)
@@ -27,12 +31,6 @@ public class Scroll_BackGround : MonoBehaviour {
             Offset += Time.deltaTime * ScrollSpeed;
             gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(Offset, 0.01f);
         }
-
-        if(material_BG.Length > 1)
-        {
-            gameObject.GetComponent<Renderer>().material = material_BG[GameManager.Instance.indexMap];
-        }
-
     }
 
     

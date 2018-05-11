@@ -450,6 +450,7 @@ MonoBehaviour:
   sceneGamePlay: {fileID: 1765070093}
   mapObj: {fileID: 1468488989}
   mainCamera: {fileID: 1610013074}
+  _camera: {fileID: 1610013073}
   indexMap: 0
 --- !u!4 &305045153
 Transform:

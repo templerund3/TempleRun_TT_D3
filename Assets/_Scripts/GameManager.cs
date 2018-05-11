@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public static GameManager Instance;
 
@@ -51,12 +52,14 @@ public class GameManager : MonoBehaviour {
 
     public Transform mapObj;
     public DeadzoneCamera mainCamera;
+    public Transform _camera;
     public int indexMap = 0;
 
 
     public void BtnSelectLevelOnclick()
     {
-        mainCamera.transform.position = new Vector3(0f, 0f, -10f);
+        ResetLevel();
+        _camera.position = new Vector3(0f, 0f, -10f);
         HidePanelAll();
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.SelectLevel);
     }
@@ -69,7 +72,7 @@ public class GameManager : MonoBehaviour {
             GameState.Instance.gamestate = STATE.NONE;
             panelPause.SetActive(true);
         }
-        
+
     }
 
     public void BtnResumeOnClick()
@@ -80,25 +83,26 @@ public class GameManager : MonoBehaviour {
 
     public void BtnHomeOnClick()
     {
-        mainCamera.transform.position = new Vector3(0f, 0f, -10f);
+        ResetLevel();
+        _camera.position = new Vector3(0f, 0f, -10f);
         HidePanelAll();
         GameState.Instance.gamestate = STATE.NONE;
         ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.Home);
     }
 
-    public void LoadLevel(float timeLoad,int mLevel)
+    public void LoadLevel(float timeLoad, int mLevel)
     {
         ResetLevel();
-        GameObject mapLevelCurrent = Resources.Load("Map"+ mLevel) as GameObject;
+        GameObject mapLevelCurrent = Resources.Load("Map" + mLevel) as GameObject;
         Instantiate(mapLevelCurrent, mapObj);
         mapObj.position = Vector3.zero;
-        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay,()=> StartCoroutine(StartLevel(timeLoad, mLevel)));
-        
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay, () => StartCoroutine(StartLevel(timeLoad, mLevel)));
+
     }
 
     public IEnumerator StartLevel(float timeLoad, int mLevel)
     {
-        level = mLevel; 
+        level = mLevel;
         panelReady.SetActive(true);
         yield return new WaitForSeconds(3f);
         objPlayer = Instantiate(player, sceneGamePlay) as GameObject;
@@ -109,26 +113,26 @@ public class GameManager : MonoBehaviour {
         objPlayer.GetComponent<Animator>().SetFloat("Index", (float)PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT));
         panelReady.SetActive(false);
         GameState.Instance.gamestate = STATE.PLAYING;
-        
+
     }
 
     public void BtnReplayOnclick()
     {
         ResetLevel();
         HidePanelAll();
-        LoadLevel(3f,level);
+        LoadLevel(3f, level);
     }
 
     public void BtnNextLevelOnclick()
     {
         ResetLevel();
         HidePanelAll();
-        LoadLevel(3f, level+1);
+        LoadLevel(3f, level + 1);
     }
 
     public void ResetLevel()
     {
-        indexMap = Random.Range(0,3);
+        indexMap = Random.Range(0, 3);
         coin = 0;
         Time.timeScale = 1f;
         if (objPlayer != null)
