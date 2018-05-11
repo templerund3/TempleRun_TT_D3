@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
             return;
         Instance = this;
 
-        PlayerPrefs.DeleteAll();
         for (int i = 1; i <= 24; i++)
         {
             if (i == 1)

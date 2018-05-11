@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     float timeCounter = 0f;
     float trailTime = 1.5f;
 
+    private Color[] colorPlayer = new Color[] { Color.white, Color.green, Color.black, Color.red };
+
 
     void Start()
     {
@@ -65,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
                 doubleJump = true;
             }
+            if(transform.position.y <= -6f)
+            {
+                MusicController.Instance.PlayDieSound();
+                StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
+                GameState.Instance.gamestate = STATE.GAMEOVER;
+            }
 
         }
     }
@@ -84,8 +92,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Shield"))
         {
+            Destroy(collision.gameObject);
             isShield = true;
             shieldPlayer.SetActive(true);
+            shieldPlayer.GetComponent<SpriteRenderer>().color = colorPlayer[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
             StartCoroutine(ActionTimer(5f, null, () =>
            {
                isShield = false;
@@ -94,8 +104,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.CompareTag("Magnet"))
         {
+            Destroy(collision.gameObject);
             isMagnet = true;
             magnetPlayer.SetActive(true);
+            magnetPlayer.GetComponent<SpriteRenderer>().color = colorPlayer[PlayerPrefs.GetInt(ContsInGame.ID_CHARACTER_CURRENT)];
             StartCoroutine(ActionTimer(5f, null, () =>
             {
                 isMagnet = false;
