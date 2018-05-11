@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
         if (panelShop != null)
         {
             panelShop.SetActive(true);
+            ShopManager.Instance.ResetScrollCharacter();
         }
     }
 
