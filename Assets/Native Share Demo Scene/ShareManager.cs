@@ -8,28 +8,39 @@ using System;
  * https://github.com/ChrisMaire/unity-native-sharing
  */
 
-public class ShareManager : MonoBehaviour {
-	public string ScreenshotName = "screenshot.png";
+public class ShareManager : MonoSingleton<ShareManager>
+{
+    public string ScreenshotName = "screenshot.png";
 
     public void ShareScreenshotWithText(string text)
     {
         string screenShotPath = Application.persistentDataPath + "/" + ScreenshotName;
-        if(File.Exists(screenShotPath)) File.Delete(screenShotPath);
+        if (File.Exists(screenShotPath)) File.Delete(screenShotPath);
 
         Application.CaptureScreenshot(ScreenshotName);
 
         StartCoroutine(delayedShare(screenShotPath, text));
     }
 
+    public void ShareText(string text)
+    {
+#if UNITY_ANDROID
+        AndroidNativeFunctions.ShareText(text, "", "Robo Flight");
+#elif UNITY_IOS
+        NativeShare.Share(text);
+#endif
+    }
+
     //CaptureScreenshot runs asynchronously, so you'll need to either capture the screenshot early and wait a fixed time
     //for it to save, or set a unique image name and check if the file has been created yet before sharing.
     IEnumerator delayedShare(string screenShotPath, string text)
     {
-        while(!File.Exists(screenShotPath)) {
-    	    yield return new WaitForSeconds(.05f);
+        while (!File.Exists(screenShotPath))
+        {
+            yield return new WaitForSeconds(.05f);
         }
 
-		NativeShare.Share(text, screenShotPath, "", "", "image/png", true, "");
+        NativeShare.Share(text, screenShotPath, "", "", "image/png", true, "");
     }
 
     //---------- Helper Variables ----------//
@@ -50,12 +61,12 @@ public class ShareManager : MonoBehaviour {
     }
 
 
-	//---------- Screenshot ----------//
-	public void Screenshot()
-	{
-		// Short way
-		StartCoroutine(GetScreenshot());
-	}
+    //---------- Screenshot ----------//
+    public void Screenshot()
+    {
+        // Short way
+        StartCoroutine(GetScreenshot());
+    }
 
     //---------- Get Screenshot ----------//
     public IEnumerator GetScreenshot()
@@ -127,7 +138,7 @@ public class ShareManager : MonoBehaviour {
         text = "Test text";
 #endif
 
-		// Share
+        // Share
         NativeShare.Share(text, screenShotPath, url, subject, "image/png", true, title);
     }
 }

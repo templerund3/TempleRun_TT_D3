@@ -59,13 +59,13 @@ public class UIManager : MonoBehaviour
     public void btnShare()
     {
         MusicController.Instance.PlayUIClick();
-        AndroidNativeFunctions.ShareText("Hi ! I'am DatDz. Ahihi !!!", "Subject", "RoboFlight");
+        ShareManager.Instance.ShareText("Hi ! I'am DatDz. Ahihi !!!");
     }
 
     public void btnShareScreenShot()
     {
         MusicController.Instance.PlayUIClick();
-        ShareImage.Instance.ButtonShare();
+        ShareManager.Instance.ShareScreenshotWithText("Robo Flight !");
     }
 
     /// <summary>

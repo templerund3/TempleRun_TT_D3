@@ -21,7 +21,7 @@ public static class NativeShare
     /// <param name="mimeType"></param>
     /// <param name="chooser"></param>
     /// <param name="chooserText"></param>
-    public static void Share(string body, string filePath = null, string url = null, string subject = "", string mimeType = "text/html", bool chooser = false, string chooserText = "Select sharing app")
+    public static void Share(string body, string filePath = null, string url = null, string subject = "", string mimeType = "text/plain", bool chooser = false, string chooserText = "Select sharing app")
     {
         ShareMultiple(body, new string[] { filePath }, url, subject, mimeType, chooser, chooserText);
     }
@@ -36,7 +36,7 @@ public static class NativeShare
     /// <param name="mimeType"></param>
     /// <param name="chooser"></param>
     /// <param name="chooserText"></param>
-    public static void ShareMultiple(string body, string[] filePaths = null, string url = null, string subject = "", string mimeType = "text/html", bool chooser = false, string chooserText = "Select sharing app")
+    public static void ShareMultiple(string body, string[] filePaths = null, string url = null, string subject = "", string mimeType = "text/plain", bool chooser = false, string chooserText = "Select sharing app")
     {
 #if UNITY_ANDROID
 		ShareAndroid(body, subject, url, filePaths, mimeType, chooser, chooserText);
@@ -55,16 +55,16 @@ public static class NativeShare
 		using (AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent"))
 		using (AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent"))
 		{
-			using (intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND")))
-			{ }
-			using (intentObject.Call<AndroidJavaObject>("setType", mimeType))
-			{ }
-			using (intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), subject))
-			{ }
-			using (intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), body))
-			{ }
+            using (intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND")))
+            { }
+            using (intentObject.Call<AndroidJavaObject>("setType", mimeType))
+            { }
+            using (intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), subject))
+            { }
+            using (intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), body))
+            { }
 
-			if (!string.IsNullOrEmpty(url))
+            if (!string.IsNullOrEmpty(url))
 			{
 				// attach url
 				using (AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri"))
@@ -96,7 +96,7 @@ public static class NativeShare
 			using (AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
 			using (AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity"))
 			{
-				if (chooser)
+                if (chooser)
                 {
                     AndroidJavaObject jChooser = intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, chooserText);
                     currentActivity.Call("startActivity", jChooser);
@@ -105,7 +105,7 @@ public static class NativeShare
                 {
                     currentActivity.Call("startActivity", intentObject);
                 }
-			}
+            }
 		}
 	}
 #endif
