@@ -10,6 +10,8 @@ public class Scroll_BackGround : MonoBehaviour {
 
     public bool isHome;
 
+    public Material[] material_BG;
+
     void Update()
     {
         if (!isHome)
@@ -26,5 +28,12 @@ public class Scroll_BackGround : MonoBehaviour {
             gameObject.GetComponent<Renderer>().material.mainTextureOffset = new Vector2(Offset, 0.01f);
         }
 
+        if(material_BG.Length > 1)
+        {
+            gameObject.GetComponent<Renderer>().material = material_BG[GameManager.Instance.indexMap];
+        }
+
     }
+
+    
 }

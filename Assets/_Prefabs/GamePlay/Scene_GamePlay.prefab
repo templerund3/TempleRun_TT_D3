@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1226803033594504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.18
   isHome: 0
+  material_BG: []
 --- !u!114 &114227041545010220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1571,7 +1572,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: OnClickButton
+        m_MethodName: btnMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1675,6 +1676,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.08
   isHome: 0
+  material_BG:
+  - {fileID: 2100000, guid: 17a4f928839663d428539243b4279761, type: 2}
+  - {fileID: 2100000, guid: 60642a3069964d34392839ffd445cddc, type: 2}
+  - {fileID: 2100000, guid: e229ebc582b651b46b7893a1da2e4501, type: 2}
 --- !u!114 &114579285508334530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1852,6 +1857,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.12
   isHome: 0
+  material_BG:
+  - {fileID: 2100000, guid: ce24f58fba6a7444299fedabbcea321a, type: 2}
+  - {fileID: 2100000, guid: 60c13fac78092b6419f5a20666e10a7f, type: 2}
+  - {fileID: 2100000, guid: dc3db07e759fd634fb749ecd928f6759, type: 2}
 --- !u!114 &114698497421723158
 MonoBehaviour:
   m_ObjectHideFlags: 1

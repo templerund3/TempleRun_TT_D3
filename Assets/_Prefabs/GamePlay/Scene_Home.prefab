@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1014714501226254
 GameObject:
   m_ObjectHideFlags: 1
@@ -2076,6 +2076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.3
   isHome: 1
+  material_BG: []
 --- !u!114 &114591425680087448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2141,6 +2142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.1
   isHome: 1
+  material_BG:
+  - {fileID: 2100000, guid: 17a4f928839663d428539243b4279761, type: 2}
+  - {fileID: 2100000, guid: 60642a3069964d34392839ffd445cddc, type: 2}
+  - {fileID: 2100000, guid: e229ebc582b651b46b7893a1da2e4501, type: 2}
 --- !u!114 &114636149126939600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2693,6 +2698,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 0.2
   isHome: 1
+  material_BG:
+  - {fileID: 2100000, guid: ce24f58fba6a7444299fedabbcea321a, type: 2}
+  - {fileID: 2100000, guid: 60c13fac78092b6419f5a20666e10a7f, type: 2}
+  - {fileID: 2100000, guid: dc3db07e759fd634fb749ecd928f6759, type: 2}
 --- !u!114 &114923557429631270
 MonoBehaviour:
   m_ObjectHideFlags: 1
