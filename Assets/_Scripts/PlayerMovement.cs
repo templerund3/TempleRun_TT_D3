@@ -144,6 +144,13 @@ public class PlayerMovement : MonoBehaviour
                 shieldPlayer.SetActive(false);
             }
         }
+        if (collision.CompareTag("ObstacleDead"))
+        {
+            anim.SetBool("isDie", true);
+            MusicController.Instance.PlayDieSound();
+            StartCoroutine(ActionTimer(0.5f, null, () => GameOver()));
+            GameState.Instance.gamestate = STATE.GAMEOVER;
+        }
         if (collision.CompareTag("Spring"))
         {
             MusicController.Instance.PlayJumpSound();

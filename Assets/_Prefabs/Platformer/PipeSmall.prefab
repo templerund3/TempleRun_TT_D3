@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 68649165717379146}
   m_Layer: 0
   m_Name: box
-  m_TagString: Untagged
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 60633755697345898}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 60846744240016656}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 68491416258999348}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 61746442584848344}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 68576387458994984}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 68521202850721634}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 61821352409085688}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 61852187288665772}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 68004744387404002}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 61648674111769988}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 68163375637701870}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 61016704964839146}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 61432284434447582}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -988,7 +988,7 @@ GameObject:
   - component: {fileID: 61566761385671380}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 61322952164686884}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1056,7 +1056,7 @@ GameObject:
   - component: {fileID: 61061972566190554}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 61592691911928824}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1105,7 +1105,7 @@ GameObject:
   - component: {fileID: 61648773093569498}
   m_Layer: 0
   m_Name: box
-  m_TagString: Obstacle
+  m_TagString: ObstacleDead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
