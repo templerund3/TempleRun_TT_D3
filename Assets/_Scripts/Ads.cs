@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ads : MonoBehaviour 
 {
+    // code ads
+
+
     //[Header("Admob")]
     //private string ADMOB_idApp;
     //InterstitialAd interstitalAd;
