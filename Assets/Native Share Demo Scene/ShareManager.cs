@@ -40,7 +40,7 @@ public class ShareManager : MonoSingleton<ShareManager>
             yield return new WaitForSeconds(.05f);
         }
 
-        NativeShare.Share(text, screenShotPath, "", "", "image/png", true, "");
+        NativeShare.Share(text, screenShotPath, "", "", "image/*", true, "");
     }
 
     //---------- Helper Variables ----------//
