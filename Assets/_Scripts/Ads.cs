@@ -6,6 +6,7 @@ public class Ads : MonoBehaviour
 {
     // code ads
 
+	// code ads
 
     //[Header("Admob")]
     //private string ADMOB_idApp;
