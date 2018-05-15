@@ -18,7 +18,7 @@ public class DashTrailObject : MonoBehaviour
         mTimeDisplayed += Time.deltaTime;
 
         mRenderer.color = Color.Lerp(mStartColor, mEndColor, mTimeDisplayed / mDisplayTime);
-        transform.localScale = Vector3.Lerp(new Vector3(0.55f,0.55f,0.55f), new Vector3(0f, 0f, 0f), mTimeDisplayed / mDisplayTime);
+        //transform.localScale = Vector3.Lerp(new Vector3(0.55f,0.55f,0.55f), new Vector3(0f, 0f, 0f), mTimeDisplayed / mDisplayTime);
         if (mTimeDisplayed >= mDisplayTime)
         {
             mSpawner.RemoveTrailObject(gameObject);
