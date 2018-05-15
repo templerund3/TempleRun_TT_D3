@@ -96,11 +96,11 @@ public class GameManager : MonoBehaviour
         GameObject mapLevelCurrent = Resources.Load("Map" + mLevel) as GameObject;
         Instantiate(mapLevelCurrent, mapObj);
         mapObj.position = Vector3.zero;
-        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay, () => StartCoroutine(StartLevel(timeLoad, mLevel)));
+        ScenesManager.Instance.GoToScene(ScenesManager.TypeScene.GamePlay, () => StartCoroutine(CoroutineLoadLevel(timeLoad, mLevel)));
 
     }
 
-    public IEnumerator StartLevel(float timeLoad, int mLevel)
+    public IEnumerator CoroutineLoadLevel(float timeLoad, int mLevel)
     {
         level = mLevel;
         panelReady.SetActive(true);

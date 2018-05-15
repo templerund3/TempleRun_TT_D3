@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         magnetPlayer = transform.GetChild(3).gameObject;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameState.Instance.gamestate == STATE.PLAYING)
         {
