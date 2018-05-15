@@ -31,7 +31,7 @@ public class MusicController : MonoSingleton<MusicController>
         {
             isOn = true;
         }
-        else
+        else if (PlayerPrefs.GetInt(ContsInGame.MUSIC) == 1)
         {
             isOn = false;
         }
